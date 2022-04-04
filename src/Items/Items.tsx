@@ -16,6 +16,7 @@ handleAddToCart}) =>(
                 {item.title}
             </h3>
             <p>{item.description}</p>
+            <p>{item.id}</p>
             <p>{item.price}</p>
         </div>
         <Button onClick={()=> handleAddToCart(item)}>Add to cart</Button>

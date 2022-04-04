@@ -9,6 +9,7 @@ import Badge from '@material-ui/core/Badge'
 import {StyledButton, Wrapper} from './App.styles'
 import Items  from './Items/Items'
 import Carts from './Carts/Carts'
+//import {CalculateTotal}  from './Carts/Carts'
 export type CartItemType={
   id:number,
   category:string,
@@ -25,6 +26,8 @@ const getProducts= async (): Promise<CartItemType[]>=>
 
 
 const App=()=> {
+  const CalculateTotal1=(items:CartItemType[]) => 
+    items.reduce((ack:number,item)=> ack + item.amount ,0);
   const [cartOpen,setCartOpen]=useState(false);
   const [cartItem,setCartItem]= useState([] as CartItemType[]);
 
@@ -74,6 +77,7 @@ if(item.id===id){
      <Drawer anchor="right" open ={cartOpen} onClose={()=>{
        setCartOpen(false)
      }}>
+      
        <Carts cartItems={cartItem} addToCart={handleAddToCart}
        removeFromCart={handleRemoveFromCart}
        />
@@ -81,9 +85,11 @@ if(item.id===id){
      <StyledButton onClick={()=>
        setCartOpen(true)
      }> 
-     <Badge badgeContent={getTotalItems} color='error'>
+     <Badge badgeContent={CalculateTotal1(cartItem).toFixed(0)} color="error">
        <AddShoppingCartIcon/>
+     
      </Badge>
+    
      </StyledButton>
 <Grid container spacing={3} >
   

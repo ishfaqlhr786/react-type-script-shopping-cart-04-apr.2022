@@ -18,6 +18,7 @@ button{
 }
 img{
     max-height: 250px;
+    width:200px;
     object-fit:cover;
     border-radius:20px 20px 00;
     border:2px solid blue;

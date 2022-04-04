@@ -13,6 +13,8 @@ type Props={
     removeFromCart:(id:number) => void
 }
 const Carts :React.FC< Props>=({cartItems,addToCart,removeFromCart}) =>{
+    const CalculateTotal=(items:CartItemType[]) => 
+    items.reduce((ack:number,item)=> ack + item.amount * item.price,0);
     return(
         <Wrapper>
             <h2>Your shopping cart</h2>
@@ -28,6 +30,7 @@ const Carts :React.FC< Props>=({cartItems,addToCart,removeFromCart}) =>{
 
                 />
             ))}
+            <h2>Total:{CalculateTotal(cartItems).toFixed(2)}</h2>
         </Wrapper>
     )
 }
